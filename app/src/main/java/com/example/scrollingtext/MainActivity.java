@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
             textoGuardar.setEnabled(false);
             buttonAddComment.setText(R.string.add_comment);
-            saveFale();
+            saveFile();
 
             // guardamos en una instancia dispositivo que usamos para introducir datos, teclado
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * metodo para guardar texto dentro de un fichero
      */
-    private void saveFale(){
+    private void saveFile(){
         String texto = textoGuardar.getText().toString();
         FileOutputStream fileOutputStream = null;
         try {
