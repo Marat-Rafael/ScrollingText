@@ -1,12 +1,14 @@
 package com.example.scrollingtext;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+
 import java.io.*;
 
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * metodo para boton que al pulsar muestra un EditText donde podemos insertar texto
+     *
      * @param view vista
      */
     public void MostrarEditText(View view) {
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * metodo para guardar texto dentro de un fichero
      */
-    private void saveFile(){
+    private void saveFile() {
         String texto = textoGuardar.getText().toString();
         FileOutputStream fileOutputStream = null;
         try {
@@ -69,15 +72,13 @@ public class MainActivity extends AppCompatActivity {
             fileOutputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
             // guardamos fichero con flujo de byte
             fileOutputStream.write(texto.getBytes());
-            Log.d("ScrollText","Fichero guardado en "+getFilesDir()+ "/"+FILE_NAME);
-            Toast.makeText(getBaseContext(),"guardado con exito",Toast.LENGTH_LONG); // toast no va be?
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Log.d("ScrollText", "Fichero guardado en " + getFilesDir() + "/" + FILE_NAME);
+            Toast.makeText(getBaseContext(), "guardado con exito", Toast.LENGTH_LONG).show(); // mostramos toast
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             // si esta abiero - cerramos
-            if(fileOutputStream != null){
+            if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
                 } catch (IOException e) {
@@ -89,27 +90,30 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * metodo para leer un fichero
+     *
      * @param view vista
      */
-    public void readFile(View view){
+    public void readFile(View view) {
         FileInputStream fileInputStream = null;
         try {
-            fileInputStream =openFileInput(FILE_NAME);
+            fileInputStream = openFileInput(FILE_NAME);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String lineaTexto ;
+            String lineaTexto;
 
             StringBuilder stringBuilder = new StringBuilder();
-            while ((lineaTexto=bufferedReader.readLine())!=null){
+            while ((lineaTexto = bufferedReader.readLine()) != null) {
                 stringBuilder.append(lineaTexto).append("\n");
             }
-            textoLeer.setText(stringBuilder);
+            // añadimos al texto anterior texto nuevo
+            textoLeer.setText(textoLeer.getText()+stringBuilder.toString());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(fileInputStream!=null){
+        } finally {
+            if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
                 } catch (IOException e) {
