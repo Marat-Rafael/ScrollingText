@@ -72,21 +72,7 @@
                     android:paddingEnd="50dp"
                     android:onClick="MostrarEditText"
                     android:text="@string/add_comment"
-                    tools:ignore="RtlSymmetry" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/buttonMostrarComments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="readFile"
-                    android:text="@string/mostrar_comentarios" />
-
+                    tools:ignore="RtlSymmetry,UsingOnClickInXml" />
             </LinearLayout>
 
             <TextView
@@ -95,8 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text=""
-                android:textSize="40dp"/>
-
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </ScrollView>

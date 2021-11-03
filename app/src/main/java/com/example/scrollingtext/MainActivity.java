@@ -2,6 +2,7 @@ package com.example.scrollingtext;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -14,6 +15,7 @@ import java.io.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * metodo para boton que al pulsar muestra un EditText donde podemos insertar texto
+     * metodo para boton que al pulsar muestra un EditText donde podemos insertar texto y guardarlo
      *
      * @param view vista
      */
@@ -48,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
             textoGuardar.setInputType(InputType.TYPE_CLASS_TEXT);
             buttonAddComment.setText(R.string.guardar);
         } else {
-
             textoGuardar.setEnabled(false);
             buttonAddComment.setText(R.string.add_comment);
+
             saveFile();
+            // y limpiamos campo
+            textoGuardar.setText("");
+            // y mostramos comentario creado
+            readFile();
 
             // guardamos en una instancia dispositivo que usamos para introducir datos, teclado
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -91,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * metodo para leer un fichero
      *
-     * @param view vista
+     *
      */
-    public void readFile(View view) {
+    @SuppressLint("SetTextI18n")
+    public void readFile() {
+        String hr ="******************************";
         FileInputStream fileInputStream = null;
         try {
             fileInputStream = openFileInput(FILE_NAME);
@@ -105,11 +113,8 @@ public class MainActivity extends AppCompatActivity {
             while ((lineaTexto = bufferedReader.readLine()) != null) {
                 stringBuilder.append(lineaTexto).append("\n");
             }
-            // añadimos al texto anterior texto nuevo
-            textoLeer.setText(textoLeer.getText()+stringBuilder.toString());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            // añadimos al texto anterior texto nuevo con fecha, entre ello marcamos linea
+            textoLeer.setText(textoLeer.getText()+stringBuilder.toString()+"\n"+MostrarFechaActual().toString()+"\n"+hr+"\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -121,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    /**
+     * metodo para mostrar fecha actual
+     * @return date
+     */
+    public Date  MostrarFechaActual(){
+        return new Date();
     }
 
 }
