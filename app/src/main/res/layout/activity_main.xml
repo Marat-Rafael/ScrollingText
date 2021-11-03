@@ -16,74 +16,82 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <ScrollView
-        android:id="@+id/scroll_bar"
-        style="@android:style/Widget.ScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/article_heading"
-        android:padding="5dp"
-        android:scrollbarSize="15dp"
-        android:soundEffectsEnabled="false">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/article_subheading"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/padding_regular"
+            android:paddingTop="75dp"
+            android:text="@string/article_subtitle"
+            android:textAppearance="@android:style/TextAppearance" />
 
-            <TextView
-                android:id="@+id/article_subheading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/padding_regular"
-                android:text="@string/article_subtitle"
-                android:textAppearance="@android:style/TextAppearance" />
-
-            <TextView
-                android:id="@+id/article"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:lineSpacingExtra="@dimen/line_spacing"
-                android:padding="@dimen/padding_regular"
-                android:text="@string/article_text" />
-
-            <EditText
-                android:id="@+id/articleComment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:editable="true"
-                android:ems="10"
-                android:enabled="false"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:minHeight="48dp"
-                tools:ignore="Deprecated,LabelFor,SpeakableTextPresentCheck" />
+        <ScrollView
+            android:id="@+id/scroll_bar"
+            style="@android:style/Widget.ScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scrollbarSize="15dp"
+            android:soundEffectsEnabled="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button_addComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="50dp"
-                    android:onClick="MostrarEditText"
-                    android:text="@string/add_comment"
-                    tools:ignore="RtlSymmetry,UsingOnClickInXml" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textComment"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=""
-                android:textSize="20sp"/>
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/article"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_regular"
+                    android:autoLink="web"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:paddingTop="75dp"
+                    android:text="@string/article_text" />
+
+                <EditText
+                    android:id="@+id/articleComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="true"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    tools:ignore="Deprecated,LabelFor,SpeakableTextPresentCheck" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_addComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="MostrarEditText"
+                        android:paddingEnd="50dp"
+                        android:text="@string/add_comment"
+                        tools:ignore="RtlSymmetry,UsingOnClickInXml" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 </RelativeLayout>
